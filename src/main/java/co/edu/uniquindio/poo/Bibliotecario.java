@@ -7,7 +7,10 @@ public class Bibliotecario extends Persona{
     private int salarioBibliotecario;
     private Date fechaContratacion;
 
-    public Bibliotecario( Persona persona, int salarioBibliotecario, Date fechaContratacion) {
+    
+
+    public Bibliotecario(String nombre, String cedula, String telefono, String correo, int salarioBibliotecario, Date fechaContratacion) {
+        super(nombre, cedula, telefono, correo);
         this.salarioBibliotecario = salarioBibliotecario;
         this.fechaContratacion = fechaContratacion;
     }
