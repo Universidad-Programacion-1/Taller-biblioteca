@@ -35,4 +35,14 @@ public class Estudiante extends Persona {
         return "Estudiante [estado=" + estado + ", prestamos=" + prestamos + "]";
     }
 
+
+    public boolean entregarPrestamo(String id){
+        boolean centinela = false;
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getCodigo().equals(id)){
+                prestamos.remove(prestamo);
+            }
+        }
+        return centinela;
+    }
 }
