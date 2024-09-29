@@ -36,11 +36,17 @@ public class Estudiante extends Persona {
     }
 
 
+    /**
+    * Este método se encarga de validar que se entrego el prestamo
+    * @param 
+    * @return retorna verdadero si entrego el prestamo 
+    */
     public boolean entregarPrestamo(String id){
         boolean centinela = false;
         for (Prestamo prestamo : prestamos) {
             if (prestamo.getCodigo().equals(id)){
                 prestamos.remove(prestamo);
+                centinela = true;
             }
         }
         return centinela;
