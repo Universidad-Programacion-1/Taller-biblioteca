@@ -10,6 +10,10 @@ public class Bibliotecario extends Persona {
     private LocalDate fechaIngreso;
     private Collection<Prestamo> prestamos;
 
+    /**
+    * Este método se encarga de crear el constructor de las clase 
+    * @param
+    */
     public Bibliotecario(String nombre, String cedula, String correo, int telefono, double salario, LocalDate fechaIngreso){
         super(nombre, cedula, correo, telefono);
         this.salario=salario;
@@ -47,8 +51,38 @@ public class Bibliotecario extends Persona {
                 + "]";
     }
 
-    
+    /**
+    * Este método se encarga de crear un prestamo
+    * @param 
+    */
+    public void crearPrestamo (Prestamo prestamo){
+        System.out.println("Primer print "+prestamo);
+        for (DetallePrestamo detallePrestamo : prestamo.getDetallePrestamos()) {
+            System.out.println("2 print "+detallePrestamo);
+            System.out.println("3 print "+detallePrestamo.getLibro().getCodigo());
+            if (prestamo.verificarEstadoLibro(detallePrestamo.getLibro().getCodigo())) {
+                prestamos.add(prestamo);   
+            }
+        }
+    }
 
-    
-    
+    public void adicionarPrestamo (Prestamo prestamo, Libro libro, int cantidad){
+        DetallePrestamo detallePrestamo = new DetallePrestamo(cantidad, prestamo, libro);
+        prestamo.getDetallePrestamos().add(detallePrestamo);
+    }
+
+    /**
+    * Este método se encarga de consultar un prestamo dado su codigo
+    * @param 
+    * @return retorna el prestamo que tenga el codigo 
+    */
+    public Prestamo consultarprestamo (String codigo){
+        Prestamo prestam = null;
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getCodigo().equals(codigo)) {
+                return prestamo;
+            }
+        }
+        return prestam;
+    }
 }

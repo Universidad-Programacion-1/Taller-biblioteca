@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * Clase que representa un préstamo de libros en una biblioteca.
+ * Contiene información sobre el préstamo, incluyendo las fechas, el bibliotecario,
+ * el estudiante y los detalles de los libros prestados.
+ */
 public class Prestamo {
 
     private String codigo; // Código único del préstamo
@@ -35,6 +40,29 @@ public class Prestamo {
             total += detallePrestamo.getSubTotal(); // Suma cada subtotal de los detalles
         }
         return total; // Retorna el total calculado
+    }
+    
+    public boolean verificarEstadoLibro (String codigo){
+        boolean centinela = false;
+        for (DetallePrestamo detallePrestamo : detallePrestamos) {
+            if (detallePrestamo.getLibro().getCodigo().equals(codigo)) {
+                if (detallePrestamo.getLibro().getUnidadesDisponibles() >= 1) {
+                    detallePrestamo.getLibro().setEstado(true);
+                    centinela = true;
+                    System.out.println("El libro si esta disponible");
+                }else {
+                    detallePrestamo.getLibro().setEstado(false);
+                    System.out.println("El libro no esta disponible");
+                }
+                return detallePrestamo.getLibro().isEstado();
+            }
+        }
+        return centinela;
+    }
+
+    public void agregarDetallePrestamos(DetallePrestamo detallePrestamo){
+        System.err.println("detalle"+ detallePrestamo);
+        detallePrestamos.add(detallePrestamo);
     }
 
     // Métodos getters y setters para acceder y modificar los atributos
