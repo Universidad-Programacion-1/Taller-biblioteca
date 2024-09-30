@@ -63,16 +63,15 @@ public class DetallePrestamo {
         this.subTotal = subTotal; // Establece el subtotal
     }
 
-    @Override
-    public String toString() {
-        return "DetallePrestamo [cantidad=" + cantidad + ", prestamo=" + prestamo + ", libro=" + libro + ", subTotal="
-                + subTotal + "]";
-    }
-
     /**
      * Método que devuelve una representación en cadena del objeto DetallePrestamo.
      * 
      * @return Cadena que representa el detalle del préstamo.
      */
+    @Override
+    public String toString() {
+        return "DetallePrestamo [cantidad=" + cantidad + ", prestamo=" + prestamo + ", libro=" + libro + ", subTotal="
+                + subTotal + "]";
+    }
     
 }

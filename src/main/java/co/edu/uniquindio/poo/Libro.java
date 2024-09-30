@@ -136,12 +136,8 @@ public class Libro {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    /*Alejandro Hernandez
-     * metodo para agregar prestamo al libro
-     */
+
     
-
-
     /*Alejandro Hernandez
      * metodo solicitar cantidad de libros que hay 
      */
@@ -155,12 +151,13 @@ public class Libro {
         System.out.println("Se han solicitado " + cantidadSolicitada + " unidades de " + titulo );
         return true; // Solicitud completada con éxito
     }
+
+    
     /*Alejandro Hernández
      * Este metodo sirve para obtener todas las especificaciones de estos libros
      */
     public String obtenerEspecificaciones(){
-        return "Código:"+ codigo + "\n" + "isbn:"+ isbn + "\n" + "autor"+autor+"/n"+"estado"+estado+"/n"+"fecha de publicación"+fechaPublicacion+"/n"+"titulo"+titulo+"/n"+"editorial"+editorial+"/n"+"unidades disponibles"+unidadesDisponibles;
-        
+        return toString();
     }
 
     @Override

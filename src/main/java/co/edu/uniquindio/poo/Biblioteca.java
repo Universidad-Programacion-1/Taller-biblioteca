@@ -77,15 +77,18 @@ public class Biblioteca {
     public void setEstudiantes(Collection<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
+
+
     /*Alejandro Hernández
      * Método para agregar libro a la lista libros
      */
-
     public void agregarLibro(Libro libro) {
         if (!verificarLibro(libro.getCodigo())) {
             libros.add(libro);
         }
     }
+
+
     /*Alejandro Hernández
      * Esta función sirve para verificar que no hayan libros repetidos por su mismo código
      */
@@ -98,6 +101,8 @@ public class Biblioteca {
         }
         return centinela;
     }
+
+
     /*Alejandro Hernández
      * Función para reemplazar un libro por otro
      */
@@ -109,47 +114,49 @@ public class Biblioteca {
             }
         }
     }
+
+
     /*Alejandro Hernández
      * Este metodo sirve para mostrar todas las especificaciones de un libro según su código
      */
-    
-    public void especificacionesDeLibro(String codigoLibro, String obtenerEspecificaciones){
+    public void especificacionesDeLibro(String codigoLibro){
 
         for (Libro libro : libros) {
             if (libro.getCodigo().equals(codigoLibro)) {
-                System.out.println("\nEspecificaciones del libro con código " + codigoLibro + ":");
                 System.out.println(libro.obtenerEspecificaciones());
                 break; // Salir del bucle si se encuentra el producto
             }
          }
     }
+
+
     /*Alejandro Hernández
      * Este metodo sirve para que el usuario pueda ingresar el codigo del libro que quiere buscar
      */
-   
-    public void  buscarLibro(){
-    
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Por favor ingrese el código del libro que desea buscar:");
-            System.out.println("1. Código: 1234");
-            System.out.println("2. Código: 5678");
-            String codigoLibro = scanner.next();
-            scanner.close();
+    public void  buscarLibro(String codigo){
             for (Libro libro : libros) {
-                if (libro.getCodigo().equals(codigoLibro)) {
+                if (libro.getCodigo().equals(codigo)) {
                     System.out.println("Este es el libro ="+libro);
                 }
             }
             
     } 
 
-    public void buscarNombreLibro(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Por favor ingrese el nombre del libro que desea buscar:");
-        String nombreLibro = scanner.next();
-        scanner.close();
-        cantidadPrestamoLibro(nombreLibro);
+
+    /*Alejandro Hernández
+     * Este metodo sirve para buscar el nombre de un libro
+     */
+    public void buscarNombreLibro(String nombre){
+        for(Libro libro : libros){
+            if (libro.getTitulo().equals(nombre)){
+                System.out.println(libro);
+            }
+        }
     }
+
+    /*Alejandro Hernández
+     * Este metodo sirve para saber cuantos prestamos tiene libro
+     */
     public String cantidadPrestamoLibro(String nombreLibro){
         for(Libro libro : libros){
             if (libro.getTitulo().equals(nombreLibro)){
@@ -159,7 +166,11 @@ public class Biblioteca {
         return nombreLibro;
     }
 
-    public void totalDinero(){
+
+    /*Alejandro Hernández
+     * Este metodo sirve para obtener el salario del bibliotecario
+     */
+    public void totalpagoBibliotecarios(){
         for (Bibliotecario bibliotecario : bibliotecarios) {
             double total_prestamo = 0;
             double total_bonificacion = 0;
@@ -177,21 +188,57 @@ public class Biblioteca {
         }
     }
 
+
+    /*Alejandro Hernández
+     * Este metodo sirve para agregar un bibliotecario y mandarlo a una lista
+     */
     public void agregarBibliotecario(Bibliotecario bibliotecario){
         bibliotecarios.add(bibliotecario);
     }
 
+    /*Alejandro Hernández
+     * Este metodo sirve para agregar un estuidiante y mandarlo a una lista
+     */
     public void agregarEstudiante(Estudiante estudiante){
         estudiantes.add(estudiante);
     }
 
-    public void mostrarCantidadPrestamos(String cedula){
+
+    /*Alejandro Hernández
+     * Este metodo sirve para mostrar la cantidad de prestamos de un bibliotecario
+     */
+    public void mostrarCantidadPrestamosBibliotecario(String cedula){
         int conntador = 0;
         for (Bibliotecario bibliotecario : bibliotecarios) {
             for (Prestamo prestamo : bibliotecario.getPrestamos()) {
                 conntador += 1;
             }
-            System.out.println("El blibliotecario "+ bibliotecario.getNombre()+ " Hizo "+conntador+ " prestamos");
+            System.out.println("El blibliotecario "+ bibliotecario.getNombre()+ " hizo "+conntador+ " prestamos");
+        }
+    }
+
+    /*Alejandro Hernández
+     * Este metodo sirve para crear un estudiante y mandarlo a una lista
+     */
+    public void mostrarCantidadPrestamosEstudiante(String cedula){
+        int conntador = 0;
+        for (Estudiante estudiante : estudiantes) {
+            for (Prestamo prestamo : estudiante.getPrestamos()) {
+                conntador += 1;
+            }
+            System.out.println("El Estudiante "+ estudiante.getNombre()+ " hizo "+conntador+ " prestamos");
+        }
+    }
+
+    /*Alejandro Hernández
+     * Este metodo sirve para crear un bibliotecario y mandarlo a una lista
+     */
+    public void crearPrestamo (Prestamo prestamo){
+        System.out.println("prestamos"+prestamo);
+        for (DetallePrestamo detallePrestamo : prestamo.getDetallePrestamos()) {
+            if (prestamo.verificarEstadoLibro(detallePrestamo.getLibro().getCodigo())) {
+                prestamos.add(prestamo);   
+            }
         }
     }
 

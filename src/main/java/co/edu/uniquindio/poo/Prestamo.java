@@ -25,6 +25,8 @@ public class Prestamo {
         this.codigo = codigo; // Inicializa el código del préstamo
         this.fechaPrestamo = fechaPrestamo; // Inicializa la fecha de préstamo
         this.fechaEntrega = fechaEntrega; // Inicializa la fecha de entrega
+        this.bibliotecario = bibliotecario;
+        this.estudiante = estudiante;
         this.detallePrestamos = new LinkedList<>(); // Inicializa la colección de detalles de préstamo
         this.total = calcularTotal(); // Calcula el total del préstamo
     }
@@ -38,10 +40,15 @@ public class Prestamo {
         double total = 0;
         for (DetallePrestamo detallePrestamo : detallePrestamos) {
             total += detallePrestamo.getSubTotal(); // Suma cada subtotal de los detalles
+
         }
+        // System.err.println("El total es: "+ total);
         return total; // Retorna el total calculado
     }
+
     
+     /* Este método sirve para verificar el estado de un libro
+     */
     public boolean verificarEstadoLibro (String codigo){
         boolean centinela = false;
         for (DetallePrestamo detallePrestamo : detallePrestamos) {
@@ -60,8 +67,10 @@ public class Prestamo {
         return centinela;
     }
 
+     /*Este método sirve para agregar un detalle de préstamo
+     */
     public void agregarDetallePrestamos(DetallePrestamo detallePrestamo){
-        System.err.println("detalle"+ detallePrestamo);
+        System.err.println("detalle prestamo"+ detallePrestamo);
         detallePrestamos.add(detallePrestamo);
     }
 

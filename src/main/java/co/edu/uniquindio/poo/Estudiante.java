@@ -39,8 +39,7 @@ public class Estudiante extends Persona {
 
     /**
     * Este método se encarga de validar que se entrego el prestamo
-    * @param 
-    * @return retorna verdadero si entrego el prestamo 
+    * @param
     */
     public void entregarPrestamo(String id){
         double total_prestamo = 0;
