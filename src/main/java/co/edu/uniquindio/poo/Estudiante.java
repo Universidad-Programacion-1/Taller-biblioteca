@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo;
 
+import java.time.Period;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -35,4 +36,24 @@ public class Estudiante extends Persona {
         return "Estudiante [estado=" + estado + ", prestamos=" + prestamos + "]";
     }
 
+
+    /**
+    * Este método se encarga de validar que se entrego el prestamo
+    * @param
+    */
+    public void entregarPrestamo(String id){
+        double total_prestamo = 0;
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getCodigo().equals(id)){
+                for (DetallePrestamo detallePrestamo : prestamo.getDetallePrestamos()) {
+                    detallePrestamo.getCantidad();
+                    int total = detallePrestamo.getLibro().getUnidadesDisponibles() + detallePrestamo.getCantidad();
+                    detallePrestamo.getLibro().setUnidadesDisponibles(total);
+                }
+                Period periodo = Period.between(prestamo.getFechaPrestamo(), prestamo.getFechaEntrega());
+                total_prestamo = periodo.getYears()* prestamo.getTotal();
+                System.out.println("El libro ha sido entregado, el total a pagar es: "+total_prestamo);
+            }
+        }
+    }
 }
